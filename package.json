@@ -4,7 +4,7 @@
   "description": "reddit clone backend",
   "main": "server.js",
   "scripts": {
-    "run dev": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "author": "Kuro",
   "license": "ISC",
