@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const subreddit = require("./routes/Subreddit");
 const connectDB = require("./db/connect");
 require("dotenv").config();
@@ -9,7 +9,7 @@ app.use(express.json());
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    app.listen(port, console.log(`server is up on ${3000}...`));
+    app.listen(port, console.log(`server is up on ${port}...`));
   } catch (err) {
     console.log(err);
   }
