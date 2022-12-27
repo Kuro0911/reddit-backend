@@ -7,7 +7,7 @@ const getSubredditByID = async (req, res) => {
     if (!subreddit) {
       return res.status(404).json({ msg: "not found" });
     }
-    res.status(200).json({ subreddit });
+    res.status(200).json(subreddit);
   } catch (error) {
     return res.status(500).json({ msg: error });
   }
