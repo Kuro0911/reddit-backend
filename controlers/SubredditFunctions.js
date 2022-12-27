@@ -12,7 +12,20 @@ const getSubredditByID = async (req, res) => {
     return res.status(500).json({ msg: error });
   }
 };
-
+const getHome = async (req, res) => {
+  try {
+    const subreddit = await Subreddit.find().select("posts");
+    let posts = [];
+    subreddit.map((ele, key) => {
+      ele.posts.map((i) => {
+        posts.push(i);
+      });
+    });
+    res.status(200).json(posts);
+  } catch (error) {
+    return res.status(500).json({ msg: error });
+  }
+};
 const createSubreddit = async (req, res) => {
   try {
     const subreddit = await Subreddit.create(req.body);
@@ -42,14 +55,15 @@ const getPostByID = async (req, res) => {
     const subreddit = await Subreddit.findOne({
       sub_id: req.params.sub_id,
     });
-    subreddit.posts.map((ele, key) => {
-      if (ele._id.toString() === req.params.post_id) {
-        return res.status(200).json(ele);
-      }
-    });
-    res.status(404).json({ msg: "not found" });
+    const post = subreddit.posts.find(
+      (ele) => ele._id.toString() === req.params.post_id
+    );
+    if (!post) {
+      return res.status(404).json({ msg: "not found" });
+    }
+    res.status(200).json(post);
   } catch (error) {
-    return res.status(500).json({ msg: error });
+    res.status(500).json({ msg: error });
   }
 };
 
@@ -58,4 +72,5 @@ module.exports = {
   createSubreddit,
   addPostToSubreddit,
   getPostByID,
+  getHome,
 };

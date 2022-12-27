@@ -19,11 +19,11 @@ app.get("/api/v1", (req, res) => res.send("Hello World!"));
 
 app.use("/api/v1/subreddit", subreddit);
 
+// app.get('/api/v1/subreddit/home')  -> get home page ->done
 // app.post('/api/v1/subreddit')  -> create new subreddit -> done
 // app.get('/api/v1/subreddit/:sub_id')  -> get subreddit by sub_id -> done
 // app.post('/api/v1/subreddit/:sub_id')  -> create a new post on subreddit by sub_id -> done
-
-// app.get(/api/v1/subreddit/:sub_id/:post_id); -> get one post by id
+// app.get(/api/v1/subreddit/:sub_id/:post_id); -> get one post by id -> done
 
 // app.get('/api/v1/subreddit')  -> get all the subreddit
 // app.patch('/api/v1/subreddit/:id')  -> update id subreddit
