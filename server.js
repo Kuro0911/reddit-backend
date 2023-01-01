@@ -16,11 +16,9 @@ const start = async () => {
   }
 };
 start();
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/api/v1", (req, res) => res.send("Hello World!"));
 
 app.use("/api/v1/subreddit", subreddit);
-
-module.exports = app;
 
 // app.get('/api/v1/subreddit/home')  -> get home page ->done
 // app.post('/api/v1/subreddit')  -> create new subreddit -> done
