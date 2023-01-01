@@ -1,4 +1,5 @@
 const express = require("express");
+const { v4 } = require("uuid");
 const app = express();
 const port = process.env.PORT || 5000;
 const subreddit = require("./routes/Subreddit");
@@ -16,7 +17,12 @@ const start = async () => {
   }
 };
 start();
-app.get("/api/v1", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => {
+  const path = `/api/v1/${v4()}`;
+  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
+  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+});
 
 app.use("/api/v1/subreddit", subreddit);
 
