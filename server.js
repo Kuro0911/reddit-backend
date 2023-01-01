@@ -18,10 +18,7 @@ const start = async () => {
 };
 start();
 app.get("/", (req, res) => {
-  const path = `/api/v1/${v4()}`;
-  res.setHeader("Content-Type", "text/html");
-  res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
-  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+  res.end(`Hello! world`);
 });
 
 app.use("/api/v1/subreddit", subreddit);
