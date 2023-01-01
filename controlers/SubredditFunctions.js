@@ -12,6 +12,14 @@ const getSubredditByID = async (req, res) => {
     return res.status(500).json({ msg: error });
   }
 };
+const getAllSubreddit = async (req, res) => {
+  try {
+    const subreddit = await Subreddit.find();
+    res.status(200).json(subreddit);
+  } catch (error) {
+    return res.status(500).json({ msg: error });
+  }
+};
 const getHome = async (req, res) => {
   try {
     const subreddit = await Subreddit.find().select("posts");
@@ -67,10 +75,31 @@ const getPostByID = async (req, res) => {
   }
 };
 
+const addVote = async (req, res) => {
+  try {
+    const subreddit = await subreddit.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    if (!task) {
+      return res.status(404).json({ msg: "task does not exist" });
+    }
+    res.status(200).json({ task });
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
 module.exports = {
   getSubredditByID,
+  getAllSubreddit,
   createSubreddit,
   addPostToSubreddit,
   getPostByID,
   getHome,
+  addVote,
 };
