@@ -2,7 +2,7 @@
   "name": "reddit-backend",
   "version": "1.0.0",
   "description": "reddit clone backend",
-  "main": "api/index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js"
   },
